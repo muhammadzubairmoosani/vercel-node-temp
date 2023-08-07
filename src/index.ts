@@ -1,10 +1,19 @@
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
-dotenv.config();
+import cors from "cors";
 
 const app = express();
+
+const corsOptions = {
+  origin: ["http://localhost:3000", "http://example.com"],
+};
+
+const corsMiddleware = cors(corsOptions);
+
+app.use(corsMiddleware);
+
+dotenv.config();
 
 const port = process.env.PORT || 8080;
 
