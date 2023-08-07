@@ -14,15 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080;
 app.use(express_1.default.json());
 app.listen(port, () => {
     return console.log(`Server is listening on ${port}`);
 });
-const dbURL = "mongodb+srv://test_user:4NwlhrRrw7R9KrQU@cluster0.uso8mpp.mongodb.net/test";
 mongoose_1.default
-    .connect(dbURL)
+    .connect(process.env.DB_CONNECTION)
     .then(() => {
     console.log("Connected to MongoDB");
 })

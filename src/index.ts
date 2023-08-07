@@ -1,5 +1,8 @@
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -9,11 +12,8 @@ app.listen(port, () => {
   return console.log(`Server is listening on ${port}`);
 });
 
-const dbURL =
-  "mongodb+srv://test_user:4NwlhrRrw7R9KrQU@cluster0.uso8mpp.mongodb.net/test";
-
 mongoose
-  .connect(dbURL)
+  .connect(process.env.DB_CONNECTION)
   .then(() => {
     console.log("Connected to MongoDB");
   })
